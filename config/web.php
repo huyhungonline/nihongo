@@ -12,6 +12,15 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+
+        'view' => [
+         'theme' => [
+             'pathMap' => [
+                '@app/views' => '@vendor/dmstr/yii2-adminlte-asset/example-views/yiisoft/yii2-basic-app'
+                          ],
+                    ],
+        ],
+
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'wrwetedrgdsyredgersyghs',
@@ -77,11 +86,16 @@ $config = [
                  '/site'   =>   'site/index',
                  'test/<level:\d+>/<jlpt>'=>'test/index',
                  '/new' =>  'new/index',
+                 '/post/comment/<id:\d+>' =>  'post/comment',
+                 '/post/create' =>  'post/create',
+                 '/post/delete/<id:\d+>' =>  'post/delete',
+                 '/post/createcomment' =>  'post/createcomment',
                  '/upload' =>  'file/upload',
                  '/sendmoney/index' =>  'file/index',
                  '/order/status' =>  'order/status',
                  '/status_money' =>  'file/status_money',
-                 '/new/post' =>  'new/post',
+                 '/user/index' =>  'user/index',
+                 '/user/comment' =>  'user/comment',
             ],
         ],
         

@@ -40,9 +40,11 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
            ->queryOne();
 
         $user = new User();
+        $user->id       = $result['id'];
         $user->username = $result['username'];
         $user->password = $result['password'];
         $user->accessToken =  $result['accessToken'];
+        $user->role =  $result['role'];
         return $user;
     }
 
