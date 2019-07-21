@@ -102,7 +102,7 @@ use yii\helpers\Url;
                                 
                                 <!-- textarea -->
                                 <div class="form-group">
-                                  <label>Textarea</label>
+                                  <label>Viết câu hỏi của bạn?</label>
                                   <textarea class="form-control" rows="3" name="content" placeholder="Enter ..."></textarea>
                                 </div>
                                  <input type="hidden" name="<?= Yii::$app->request->csrfParam; ?>" value="<?= Yii::$app->request->csrfToken; ?>" />
@@ -181,7 +181,7 @@ use yii\helpers\Url;
                   <?php } ?>
             <!-- END timeline item -->
             <!-- timeline item -->
-                <?php  if($new['type']==2) { ?>
+                <?php  if(($new['type']==2)&&($new['user_id']==\Yii::$app->user->identity->id)) { ?>
                         <li>
                           <i class="fa fa-comments bg-yellow"></i>
 
@@ -195,6 +195,9 @@ use yii\helpers\Url;
                             </div>
                             <div class="timeline-footer">
                               <a class="btn btn-warning btn-flat btn-xs" href="<?php echo Url::toRoute(['post/comment', 'id' => $new['post_id']]); ?>">View all comment</a>
+                            <?php  if((\Yii::$app->user->identity->id == $new['user_id']) || (\Yii::$app->user->identity->id == 1)) { ?>
+                              <a href="<?php echo Url::toRoute(['post/deletecomment', 'id' => $new['comment_id']]); ?>" class="btn btn-danger btn-xs" style="float: right;">Xóa</a>
+                            <?php  } ?>
                             </div>
                           </div>
                         </li>

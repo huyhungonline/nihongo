@@ -15,7 +15,15 @@ class PostController extends Controller
 {
 	 
     
-      
+      public function actionTest(){
+
+                 $post = new Post();
+                  $post->user_id = 1;
+                  // var_dump($post->user_id);die;
+                  $post->content = 123;
+                  $post->save();
+
+      }
       public function actionCreate(){
              
              $request = Yii::$app->request;
@@ -31,10 +39,12 @@ class PostController extends Controller
                   $content  = $request->post('content');
                   $post = new Post();
                   $post->user_id = \Yii::$app->user->identity->id;
+                  // var_dump($post->user_id);die;
                   $post->content = $content;
                   $post->save();
                   $new = new NewC();
                   $new->post_id = $post->id;
+                  $new->user_id = \Yii::$app->user->identity->id;
                   $new->content = "đã đăng bài viết mới";
                   $new->type    = 1;
                   $new->save();
@@ -114,7 +124,30 @@ class PostController extends Controller
 
 
       }
+      
+      public function actionDeletecomment(){
 
+                      $transaction = Yii::$app->db->beginTransaction();
+             try {
+                
+                      $request  = Yii::$app->request;
+                      $comment_id    = $request->get('id');
+                      $new = NewC::findBySql('SELECT * FROM news where comment_id ='.$comment_id)->one();
+                      $new->delete();
+                      $comment = Comment::findBySql('SELECT * FROM comments where id ='.$comment_id)->one();
+                    
+                      $comment->delete();
+                    
+
+                      $transaction->commit();
+                      return $this->redirect(['/new']);
+
+             }catch(Exception $e){
+
+                      $transaction->rollBack();
+                      printf($e->message);
+             }
+      }
       
       public function actionComment()
       {

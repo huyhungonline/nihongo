@@ -90,12 +90,17 @@ $config = [
                  '/post/create' =>  'post/create',
                  '/post/delete/<id:\d+>' =>  'post/delete',
                  '/post/createcomment' =>  'post/createcomment',
+                 '/post/deletecomment/<id:\d+>' =>  'post/deletecomment',
+                 '/post/test' =>  'post/test',
                  '/upload' =>  'file/upload',
                  '/sendmoney/index' =>  'file/index',
                  '/order/status' =>  'order/status',
                  '/status_money' =>  'file/status_money',
                  '/user/index' =>  'user/index',
                  '/user/comment' =>  'user/comment',
+
+                 // input
+                 '/input/input1234' =>  '/input/input1234',
             ],
         ],
         
