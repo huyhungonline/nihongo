@@ -47,7 +47,7 @@ class NewC extends ActiveRecord
 
     public  function getcomment(){
 
-           $comment = Comment::findBySql('SELECT * FROM comments where id ='.$this->comment_id)->asArray()->all();
+           $comment = Comment::findBySql('SELECT * FROM comments where id ='.$this->comment_id)->all();
 
            return $comment;
 

@@ -50,9 +50,14 @@ class RegisterController extends Controller
                    $user->username = $username;
                    $user->email    = $email;
                    $user->password = md5($password);
-                   if($user->saveData($username,$password,$email)){
+                   $uniqid   = uniqid();
+                   if($user->saveData($username,$password,$email,$uniqid)){
+                      
+                       $this->sendmail($user->email,$uniqid,$user->id);
 
-                       return $this->redirect(['/login']);
+
+                       return $this->render('register',['message' => 'Mã xác nhận đã được gửi về mail của bạn, vui lòng kiểm tra mail']);
+                      
                    }
                   
               } else {
@@ -69,6 +74,38 @@ class RegisterController extends Controller
 
         }
 
+      }
+      
+      public function actionCheckcode(){
+          
+           $request  = Yii::$app->request;
+           $uniqid = $request->get('id');
+           $user = User::findBySql("SELECT * FROM users where uniqid = '".$uniqid."'")->one();
+       
+           if($user){
+
+             return $this->redirect(['/login']);
+
+           }else{
+
+               return $this->render('register',['message' => 'Đã xảy ra lỗi, mời bạn đăng kí lại']);
+           }
+
+      }
+      public function Sendmail($email,$uniqid,$user_id){
+         
+         $str = "http://localhungbk.com/register/checkcode?id=".$uniqid."&user_id=".$user_id;
+         Yii::$app->mailer->compose()
+          ->setFrom('nguyenhuyhung.business@gmail.com')
+          ->setTo($email)
+          ->setSubject('Уведемление с сайта <yourDomain>') // тема письма
+          ->setTextBody('Текстовая версия письма (без HTML)')
+          ->setHtmlBody("
+            <h2 style='color:blue;'>Bạn đã đăng kí tài khoản tại trang newNet.com</h2><br>
+            <p>Vui lòng click vào link dưới đây để hoàn tất đăng kí tài khoản</p>
+            <a href=".$str.">Click tại đây để xác nhận</a>")
+          ->send();
+          return 1;
       }
 
     

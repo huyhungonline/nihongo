@@ -42,7 +42,7 @@ class InputController extends Controller
                   $test->note3 = $note3;
                   $test->note4 = $note4;
                   $test->save();
-
+                  return $this->render('checksave',['test' => $test]);
 
                }else{
 
@@ -51,7 +51,30 @@ class InputController extends Controller
           
         
       }
+      
+        public function actionDelete1234(){
+        
+            $transaction = Yii::$app->db->beginTransaction();
+             try {
+                
+                      $request  = Yii::$app->request;
+                      $id       = $request->get('id');
+                   
+                      $test     = Test::findBySql('SELECT * FROM test where id ='.$id)->one();
+                      $test->delete();
 
+                    
+
+                      $transaction->commit();
+                      return $this->redirect(['/input/input1234']);
+
+             }catch(Exception $e){
+
+                      $transaction->rollBack();
+                      printf($e->message);
+             }
+
+      }
       public function actionHome(){
         
          return $this->render('home');

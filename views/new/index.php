@@ -181,7 +181,7 @@ use yii\helpers\Url;
                   <?php } ?>
             <!-- END timeline item -->
             <!-- timeline item -->
-                <?php  if(($new['type']==2)&&($new['user_id']==\Yii::$app->user->identity->id)) { ?>
+                <?php  if(($new['type']==2)&&($new->getcomment()[0]->getpost()[0]->getuser()[0]['id']==\Yii::$app->user->identity->id)) { ?>
                         <li>
                           <i class="fa fa-comments bg-yellow"></i>
 

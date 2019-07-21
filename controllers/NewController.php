@@ -21,14 +21,14 @@ class NewController extends Controller
          // $i = 0;
          // foreach ($news as $new) {
          //      $i++;
-         //      var_dump($new->getuser()[0]['username']);
-         //      if($i == 1){
-         //        var_dump($new->getpost()[0]->getuser()[0]['username']);
+             
+         //      if($new['type'] == 2){
+         //        var_dump($new->getcomment()[0]->getpost()[0]->getuser()[0]['id']);
          //      }
               
 
          // }
-         // die;
+        
          return $this->render('index',[
                 'news' => $news
             ]);

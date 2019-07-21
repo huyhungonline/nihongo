@@ -11,7 +11,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     public $email;
     public $authKey;
     public $accessToken;
-
+    public $uniqid;
    
 
    public static function tableName()
@@ -28,6 +28,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
           'email' => 'Email',
           'authKey' => 'AuthKey',
           'accessToken' => 'AccessToken',
+          'uniqid' => 'Uniqid',
         ];
 
   }
@@ -74,13 +75,19 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
         
         $result = Yii::$app->db->createCommand("SELECT * FROM `users` WHERE `username` = '".$username."'")
            ->queryOne();
+        if($result){
 
-        $user = new User();
-        $user->id = $result['id'];
-        $user->username = $result['username'];
-        $user->password = $result['password'];
-        $user->accessToken =  $result['accessToken'];
-        return $user;
+                $user = new User();
+                $user->id = $result['id'];
+                $user->username = $result['username'];
+                $user->password = $result['password'];
+                $user->accessToken =  $result['accessToken'];
+                return $user;
+        }else {
+
+            return false;
+        }
+
     }
     
        public static function findByEmail($email)
@@ -88,15 +95,23 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
         
         $result = Yii::$app->db->createCommand("SELECT * FROM `users` WHERE `email` = '".$email."'")
            ->queryOne();
+        if($result){
 
-        $user = new User();
-        $user->username = $result['username'];
-        $user->password = $result['password'];
-        $user->accessToken =  $result['accessToken'];
-        return $user;
+            $user = new User();
+            $user->id = $result['id'];
+            $user->username = $result['username'];
+            $user->password = $result['password'];
+            $user->accessToken =  $result['accessToken'];
+            return $user;
+
+        }else {
+
+            return false;
+        }
+
     }
 
-    public function saveData($username,$password,$email)
+    public function saveData($username,$password,$email,$uniqid)
     {
         $command=Yii::$app->db->createCommand()
         ->insert(
@@ -105,14 +120,21 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
                 'username'=>$username,
                 'password'=>md5($password),
                 'email'   =>$email,
+                'uniqid'  =>$uniqid,
                 'accessToken'   =>"123456789",
             )
         );
         $sql_result = $command->execute();
+        // $user = new User();
+        // $user->uniqid      =  $uniqid;
+        // $user->username    =  $username;
+        // $user->password    =  md5($password);
+        // $user->email       =  $email;
+        // $user->accessToken =  "123456789";
 
         if($sql_result){
 
-            return true;
+            return $id = Yii::$app->db->getLastInsertID();
 
         }
 

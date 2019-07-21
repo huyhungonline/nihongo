@@ -199,7 +199,7 @@ $session = Yii::$app->session;
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="<?php echo Url::toRoute(['/logout']); ?>" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -243,16 +243,19 @@ $session = Yii::$app->session;
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
+        <?php if(!Yii::$app->user->isGuest) { ?>
         <li>
-          <a href="<?php echo Url::toRoute(['/new']); ?>">
-            <i class="fa fa-dashboard"></i> <span>Bảng tin</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-green">16</small>
-            </span>
-          </a>
+              <a href="<?php echo Url::toRoute(['/new']); ?>">
+                <i class="fa fa-dashboard"></i> <span>Bảng tin</span>
+                <span class="pull-right-container">
+                  <small class="label pull-right bg-green">16</small>
+                </span>
+              </a>
         </li>
+        <?php } ?>
+
         <li>
-          <a href="<?php echo Url::toRoute(['/new']); ?>">
+          <a href="<?php echo Url::toRoute(['/test/index']); ?>">
             <i class="fa fa-files-o"></i>
             <span>Luyện đề JLPT</span>
             <span class="pull-right-container">

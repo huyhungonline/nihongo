@@ -5,6 +5,7 @@ use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 use yii\web\Session;
 use app\models\User;
+use app\models\Post;
 use Yii;
 class Comment extends ActiveRecord 
 {
@@ -35,5 +36,12 @@ class Comment extends ActiveRecord
            return $user;
 
    }
-   
+
+       public  function getpost(){
+
+           $post = Post::findBySql('SELECT * FROM posts where id ='.$this->post_id)->all();
+
+           return $post;
+
+   }
 }
