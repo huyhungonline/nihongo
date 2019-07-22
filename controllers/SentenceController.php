@@ -19,11 +19,12 @@ class SentenceController extends Controller
           $this->layout = 'main';
           $query      = Lesson_1000_sentence_audio::find();
           $countQuery = clone $query;
-          $pages      = new Pagination(['totalCount' => $countQuery->count()]);
+          $pages      = new Pagination(['totalCount' => $countQuery->count(),'pageSize' => '1']);
           $models     = $query->offset($pages->offset)
-              ->limit($pages->limit)
+              ->limit(1)
               ->all();
           // $this->view->params['customParam'] = 'huyhung';
+              // var_dump($models);die;
           return $this->render('index', [
                'audio' => $models,
                'pages' => $pages,

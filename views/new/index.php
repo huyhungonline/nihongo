@@ -1,6 +1,7 @@
 <?php 
 
 use yii\helpers\Url;
+use yii\widgets\LinkPager;
 
 ?>
 
@@ -205,9 +206,20 @@ use yii\helpers\Url;
              <?php } ?>
             <li>
               <i class="fa fa-clock-o bg-gray"></i>
+                    <div class="timeline-item">
+                                      <?php  
+
+                                            if(!Yii::$app->user->isGuest) {
+                                              echo LinkPager::widget([
+                                                  'pagination' => $pages,
+                                              ]);
+                                            }
+                                      ?>
+                    </div>
             </li>
           </ul>
         </div>
+
         <!-- /.col -->
       </div>
       <!-- /.row -->

@@ -14,22 +14,7 @@ foreach ($audio as $au) {
 ?>
 
   <style type="text/css">
-    .container {
-      width: 90%;
-    }
-
-    #text1 {
-      margin-top: 5%;
-      margin-bottom: 2%;
-    }
-
-    .navbar-expand-sm {
-
-      background: #F8F8FF;
-      width: 100%;
-
-    }
-
+  
     #login_button {
        margin-bottom: 3%;
        margin-left: 10%;
@@ -59,49 +44,54 @@ foreach ($audio as $au) {
   </div>
  
 
-  <div class="tab-content">
-    <div id="home" class="tab-pane fade in active">
-      <h3>Bài 1 </h3> 
-      <audio controls>
-          <source src="<?= Url::to($url)?>" type="audio/mpeg">
-          Your browser does not support the audio element.
-      </audio>
-      <?php   if(!Yii::$app->user->isGuest) { ?>
-             <button onclick="luyende()" class="btn btn-success" id="login_button">Luyện đề thần tốc<span class="glyphicon glyphicon-play"></span></button>
-      <?php }else { ?>
-             <button onclick="login()" class="btn btn-success" id="login_button">Login để học tiếp<span class="glyphicon glyphicon-play"></span></button>
-      <?php } ?>
-      <div  class="post" >
-          <table class="table">
-              <thead>
-                <tr>
-                  <th>Câu mẫu</th>
-                  <th>Phiên âm</th>
-                  <th>Dịch tiếng Việt</th>
-                </tr>
-              </thead>
-              <tbody>
-              <?php
-                foreach ($sentences as $sentence) {
-              ?>
-                 
-                  <tr class="success">
-                    <td><?php echo $sentence['nihongo'];?></td>
-                    <td>Doe</td>
-                    <td><?php echo $sentence['vietnamese'];?></td>
-                  </tr>
-              <?php  } ?>
-              </tbody>
-  　　　　　　　</table>
-              <?php  
-                if(!Yii::$app->user->isGuest) {
-          				echo LinkPager::widget([
-          				    'pagination' => $pages,
-          				]);
-                }
-             ?>
+  <div class="row">
+    <div class="box-body">
+      <div class="box-body">
+           <h3>Bài 1 </h3> 
+            <audio controls>
+                <source src="<?= Url::to($url)?>" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <?php   if(!Yii::$app->user->isGuest) { ?>
+                   <button onclick="luyende()" class="btn btn-success" id="login_button">Luyện đề thần tốc<span class="glyphicon glyphicon-play"></span></button>
+            <?php }else { ?>
+                   <button onclick="login()" class="btn btn-success" id="login_button">Login để học tiếp<span class="glyphicon glyphicon-play"></span></button>
+            <?php } ?>
       </div>
-      
+     
+      <div  class="box" >
+            <div class="box-body">
+              <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Câu mẫu</th>
+                      <th>Phiên âm</th>
+                      <th>Dịch tiếng Việt</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <?php
+                    foreach ($sentences as $sentence) {
+                  ?>
+                     
+                      <tr class="success">
+                        <td><?php echo $sentence['nihongo'];?></td>
+                        <td>Doe</td>
+                        <td><?php echo $sentence['vietnamese'];?></td>
+                      </tr>
+                  <?php  } ?>
+                  </tbody>
+      　　　　　　　</table>
+                  <?php  
+                  
+                    if(!Yii::$app->user->isGuest) {
+              				echo LinkPager::widget([
+              				    'pagination' => $pages,
+              				]);
+                    }
+                 ?>
+          </div>
+      </div>
     </div>
   </div>
 </div>

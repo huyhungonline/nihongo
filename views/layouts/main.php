@@ -160,6 +160,14 @@ $session = Yii::$app->session;
               <li class="footer"><a href="#">See All Messages</a></li>
             </ul>
           </li>
+          <?php if(Yii::$app->user->isGuest) { ?>
+          <li>
+              <a href="<?php echo Url::toRoute(['/login']); ?>" > Login</a>
+          </li>
+           <li>
+              <a href="<?php echo Url::toRoute(['/register']); ?>" > Register</a>
+          </li>
+           <?php } ?>
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -168,6 +176,7 @@ $session = Yii::$app->session;
             <span class="hidden-xs"><?= \Yii::$app->user->identity->username ?></span>
             <?php } ?>
             </a>
+            
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
@@ -256,7 +265,7 @@ $session = Yii::$app->session;
         <?php } ?>
 
         <li>
-          <a href="<?php echo Url::toRoute(['/test/index']); ?>">
+          <a href="<?php echo Url::toRoute(['test/index', 'level' => 3]); ?>">
             <i class="fa fa-files-o"></i>
             <span>Luyện đề JLPT</span>
             <span class="pull-right-container">
@@ -266,7 +275,7 @@ $session = Yii::$app->session;
          
         </li>
         <li>
-          <a href="<?php echo Url::toRoute(['/new']); ?>">
+          <a href="<?php echo Url::toRoute(['/']); ?>">
             <i class="fa fa-th"></i> <span>Đọc truyện</span>
             <span class="pull-right-container">
               <small class="label pull-right bg-green">new</small>

@@ -6,13 +6,13 @@ use yii\web\IdentityInterface;
 use yii\web\Session;
 
 use Yii;
-class Mondai_list extends ActiveRecord 
+class Dockkai_long extends ActiveRecord 
 {
      
   
     public static function tableName()
     {
-        return 'mondailist';
+        return 'dockkai_long';
     }
     
     
@@ -29,7 +29,7 @@ class Mondai_list extends ActiveRecord
 
     public function getMondaisub()
     {
-          $lists = Yii::$app->db->createCommand("SELECT * FROM `mondailist_sub` WHERE mondailist_id = ".$this->id)
+          $lists = Yii::$app->db->createCommand("SELECT * FROM `dockkai_long_answer` WHERE dockkai_long_id = ".$this->id)
            ->queryAll();
            return $lists;
     }

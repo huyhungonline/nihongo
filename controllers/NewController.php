@@ -7,6 +7,7 @@ use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use app\models\NewC;
+use yii\data\Pagination;
 class NewController extends Controller
 {
 	  
@@ -17,7 +18,13 @@ class NewController extends Controller
 
                   'created_at' => SORT_DESC
                   
-                ])->all();
+                ]);
+
+          $countQuery   = clone $news;
+          $pages        = new Pagination(['totalCount' => $countQuery->count(),'pageSize' => '1']);
+          $list_news     = $news->offset($pages->offset)
+              ->limit(2)
+              ->all();
          // $i = 0;
          // foreach ($news as $new) {
          //      $i++;
@@ -30,7 +37,8 @@ class NewController extends Controller
          // }
         
          return $this->render('index',[
-                'news' => $news
+                'news' => $list_news,
+                'pages' => $pages,
             ]);
         
       }

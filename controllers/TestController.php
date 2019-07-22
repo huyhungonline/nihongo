@@ -6,7 +6,7 @@ use Yii;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
-use app\models\Mondai_list;
+use app\models\Dockkai_long;
 use yii\db\Expression;
 
 class TestController extends Controller
@@ -28,15 +28,15 @@ class TestController extends Controller
              $part6 = Yii::$app->db->createCommand("SELECT * FROM `test` WHERE `level` = '".$level."' AND `part` = 6 ORDER BY RAND() LIMIT 2 ")->queryAll();
              $part7 = Yii::$app->db->createCommand("SELECT * FROM `test` WHERE `level` = '".$level."' AND `part` = 7 ORDER BY RAND() LIMIT 2 ")->queryAll();
              $part8 = Yii::$app->db->createCommand("SELECT * FROM `test` WHERE `level` = '".$level."' AND `part` = 8 ORDER BY RAND() LIMIT 2 ")->queryAll();
-             $part9 = Yii::$app->db->createCommand("SELECT * FROM `test` WHERE `level` = '".$level."' AND `part` = 9 ORDER BY RAND() LIMIT 1 ")->queryOne();
-             $p9_q1 = Yii::$app->db->createCommand("SELECT * FROM `mondai_sub` WHERE `id`    = '".$part9['answer1']."'     ORDER BY RAND() LIMIT 1 ")->queryOne();
-             $p9_q2 = Yii::$app->db->createCommand("SELECT * FROM `mondai_sub` WHERE `id`    = '".$part9['answer2']."'     ORDER BY RAND() LIMIT 1 ")->queryOne();
-             $p9_q3 = Yii::$app->db->createCommand("SELECT * FROM `mondai_sub` WHERE `id`    = '".$part9['answer3']."'     ORDER BY RAND() LIMIT 1 ")->queryOne();
-             $p9_q4 = Yii::$app->db->createCommand("SELECT * FROM `mondai_sub` WHERE `id`    = '".$part9['answer4']."'     ORDER BY RAND() LIMIT 1 ")->queryOne();
-             $p9_q5 = Yii::$app->db->createCommand("SELECT * FROM `mondai_sub` WHERE `id`    = '".$part9['answer_true']."' ORDER BY RAND() LIMIT 1 ")->queryOne();
+             $part9 = Yii::$app->db->createCommand("SELECT * FROM `mondai9`  ORDER BY RAND() LIMIT 1 ")->queryOne();
+             $p9_q1 = Yii::$app->db->createCommand("SELECT * FROM `mondai9_answer` WHERE `id`    = '".$part9['ans1']."'    LIMIT 1 ")->queryOne();
+             $p9_q2 = Yii::$app->db->createCommand("SELECT * FROM `mondai9_answer` WHERE `id`    = '".$part9['ans2']."'    LIMIT 1 ")->queryOne();
+             $p9_q3 = Yii::$app->db->createCommand("SELECT * FROM `mondai9_answer` WHERE `id`    = '".$part9['ans3']."'    LIMIT 1 ")->queryOne();
+             $p9_q4 = Yii::$app->db->createCommand("SELECT * FROM `mondai9_answer` WHERE `id`    = '".$part9['ans4']."'    LIMIT 1 ")->queryOne();
+             $p9_q5 = Yii::$app->db->createCommand("SELECT * FROM `mondai9_answer` WHERE `id`    = '".$part9['ans5']."'    LIMIT 1 ")->queryOne();
              $part10 = Yii::$app->db->createCommand("SELECT * FROM `test` WHERE `level` = '".$level."' AND `part` = 10 ORDER BY RAND() LIMIT 2 ")->queryAll();
              //$mondai_list = Mondai_list::find()->orderBy(new Expression('rand()'))->limit(2);
-             $mondai_list = Mondai_list::findBySql('SELECT * FROM mondailist ORDER BY RAND() LIMIT 2')->all();
+             $mondai_list = Dockkai_long::findBySql('SELECT * FROM dockkai_long ORDER BY RAND() LIMIT 2')->all();
 
          }else {
            
@@ -48,14 +48,14 @@ class TestController extends Controller
              $part6 = Yii::$app->db->createCommand("SELECT * FROM `test` WHERE `level` = '".$level."' AND `part` = 6 ORDER BY RAND() LIMIT 2 ")->queryAll();
              $part7 = Yii::$app->db->createCommand("SELECT * FROM `test` WHERE `level` = '".$level."' AND `part` = 7 ORDER BY RAND() LIMIT 2 ")->queryAll();
              $part8 = Yii::$app->db->createCommand("SELECT * FROM `test` WHERE `level` = '".$level."' AND `part` = 8 ORDER BY RAND() LIMIT 2 ")->queryAll();
-             $part9 = Yii::$app->db->createCommand("SELECT * FROM `test` WHERE `level` = '".$level."' AND `part` = 9 ORDER BY RAND() LIMIT 1 ")->queryOne();
-             $p9_q1 = Yii::$app->db->createCommand("SELECT * FROM `mondai_sub` WHERE `id`    = '".$part9['answer1']."'     ORDER BY RAND() LIMIT 1 ")->queryOne();
-             $p9_q2 = Yii::$app->db->createCommand("SELECT * FROM `mondai_sub` WHERE `id`    = '".$part9['answer2']."'     ORDER BY RAND() LIMIT 1 ")->queryOne();
-             $p9_q3 = Yii::$app->db->createCommand("SELECT * FROM `mondai_sub` WHERE `id`    = '".$part9['answer3']."'     ORDER BY RAND() LIMIT 1 ")->queryOne();
-             $p9_q4 = Yii::$app->db->createCommand("SELECT * FROM `mondai_sub` WHERE `id`    = '".$part9['answer4']."'     ORDER BY RAND() LIMIT 1 ")->queryOne();
-             $p9_q5 = Yii::$app->db->createCommand("SELECT * FROM `mondai_sub` WHERE `id`    = '".$part9['answer_true']."' ORDER BY RAND() LIMIT 1 ")->queryOne();
+             $part9 = Yii::$app->db->createCommand("SELECT * FROM `mondai9`  ORDER BY RAND() LIMIT 1 ")->queryOne();
+             $p9_q1 = Yii::$app->db->createCommand("SELECT * FROM `mondai9_answer` WHERE `id`    = '".$part9['ans1']."'    LIMIT 1 ")->queryOne();
+             $p9_q2 = Yii::$app->db->createCommand("SELECT * FROM `mondai9_answer` WHERE `id`    = '".$part9['ans2']."'    LIMIT 1 ")->queryOne();
+             $p9_q3 = Yii::$app->db->createCommand("SELECT * FROM `mondai9_answer` WHERE `id`    = '".$part9['ans3']."'    LIMIT 1 ")->queryOne();
+             $p9_q4 = Yii::$app->db->createCommand("SELECT * FROM `mondai9_answer` WHERE `id`    = '".$part9['ans4']."'    LIMIT 1 ")->queryOne();
+             $p9_q5 = Yii::$app->db->createCommand("SELECT * FROM `mondai9_answer` WHERE `id`    = '".$part9['ans5']."'    LIMIT 1 ")->queryOne();
              $part10 = Yii::$app->db->createCommand("SELECT * FROM `test` WHERE `level` = '".$level."' AND `part` = 10 ORDER BY RAND() LIMIT 2 ")->queryAll();
-             $mondai_list = Mondai_list::findBySql('SELECT * FROM mondailist ORDER BY RAND() LIMIT 2')->all();
+             $mondai_list = Dockkai_long::findBySql('SELECT * FROM dockkai_long ORDER BY RAND() LIMIT 2')->all();
          }
         
           
@@ -73,29 +73,29 @@ class TestController extends Controller
            
              $part7 = Yii::$app->db->createCommand("SELECT * FROM `test` WHERE `level` = '".$level."' AND `part` = 7 ORDER BY RAND() LIMIT 2 ")->queryAll();
              $part8 = Yii::$app->db->createCommand("SELECT * FROM `test` WHERE `level` = '".$level."' AND `part` = 8 ORDER BY RAND() LIMIT 2 ")->queryAll();
-             $part9 = Yii::$app->db->createCommand("SELECT * FROM `test` WHERE `level` = '".$level."' AND `part` = 9 ORDER BY RAND() LIMIT 1 ")->queryOne();
-             $p9_q1 = Yii::$app->db->createCommand("SELECT * FROM `mondai_sub` WHERE `id`    = '".$part9['answer1']."'     ORDER BY RAND() LIMIT 1 ")->queryOne();
-             $p9_q2 = Yii::$app->db->createCommand("SELECT * FROM `mondai_sub` WHERE `id`    = '".$part9['answer2']."'     ORDER BY RAND() LIMIT 1 ")->queryOne();
-             $p9_q3 = Yii::$app->db->createCommand("SELECT * FROM `mondai_sub` WHERE `id`    = '".$part9['answer3']."'     ORDER BY RAND() LIMIT 1 ")->queryOne();
-             $p9_q4 = Yii::$app->db->createCommand("SELECT * FROM `mondai_sub` WHERE `id`    = '".$part9['answer4']."'     ORDER BY RAND() LIMIT 1 ")->queryOne();
-             $p9_q5 = Yii::$app->db->createCommand("SELECT * FROM `mondai_sub` WHERE `id`    = '".$part9['answer_true']."' ORDER BY RAND() LIMIT 1 ")->queryOne();
+            $part9 = Yii::$app->db->createCommand("SELECT * FROM `mondai9`  ORDER BY RAND() LIMIT 1 ")->queryOne();
+             $p9_q1 = Yii::$app->db->createCommand("SELECT * FROM `mondai9_answer` WHERE `id`    = '".$part9['ans1']."'    LIMIT 1 ")->queryOne();
+             $p9_q2 = Yii::$app->db->createCommand("SELECT * FROM `mondai9_answer` WHERE `id`    = '".$part9['ans2']."'    LIMIT 1 ")->queryOne();
+             $p9_q3 = Yii::$app->db->createCommand("SELECT * FROM `mondai9_answer` WHERE `id`    = '".$part9['ans3']."'    LIMIT 1 ")->queryOne();
+             $p9_q4 = Yii::$app->db->createCommand("SELECT * FROM `mondai9_answer` WHERE `id`    = '".$part9['ans4']."'    LIMIT 1 ")->queryOne();
+             $p9_q5 = Yii::$app->db->createCommand("SELECT * FROM `mondai9_answer` WHERE `id`    = '".$part9['ans5']."'    LIMIT 1 ")->queryOne();
              $part10 = Yii::$app->db->createCommand("SELECT * FROM `test` WHERE `level` = '".$level."' AND `part` = 10 ORDER BY RAND() LIMIT 2 ")->queryAll();
              //$mondai_list = Mondai_list::find()->orderBy(new Expression('rand()'))->limit(2);
-             $mondai_list = Mondai_list::findBySql('SELECT * FROM mondailist ORDER BY RAND() LIMIT 2')->all();
+             $mondai_list = Dockkai_long::findBySql('SELECT * FROM dockkai_long ORDER BY RAND() LIMIT 2')->all();
 
          }else {
            
             
              $part7 = Yii::$app->db->createCommand("SELECT * FROM `test` WHERE `level` = '".$level."' AND `part` = 7 ORDER BY RAND() LIMIT 2 ")->queryAll();
              $part8 = Yii::$app->db->createCommand("SELECT * FROM `test` WHERE `level` = '".$level."' AND `part` = 8 ORDER BY RAND() LIMIT 2 ")->queryAll();
-             $part9 = Yii::$app->db->createCommand("SELECT * FROM `test` WHERE `level` = '".$level."' AND `part` = 9 ORDER BY RAND() LIMIT 1 ")->queryOne();
-             $p9_q1 = Yii::$app->db->createCommand("SELECT * FROM `mondai_sub` WHERE `id`    = '".$part9['answer1']."'     ORDER BY RAND() LIMIT 1 ")->queryOne();
-             $p9_q2 = Yii::$app->db->createCommand("SELECT * FROM `mondai_sub` WHERE `id`    = '".$part9['answer2']."'     ORDER BY RAND() LIMIT 1 ")->queryOne();
-             $p9_q3 = Yii::$app->db->createCommand("SELECT * FROM `mondai_sub` WHERE `id`    = '".$part9['answer3']."'     ORDER BY RAND() LIMIT 1 ")->queryOne();
-             $p9_q4 = Yii::$app->db->createCommand("SELECT * FROM `mondai_sub` WHERE `id`    = '".$part9['answer4']."'     ORDER BY RAND() LIMIT 1 ")->queryOne();
-             $p9_q5 = Yii::$app->db->createCommand("SELECT * FROM `mondai_sub` WHERE `id`    = '".$part9['answer_true']."' ORDER BY RAND() LIMIT 1 ")->queryOne();
+             $part9 = Yii::$app->db->createCommand("SELECT * FROM `mondai9`  ORDER BY RAND() LIMIT 1 ")->queryOne();
+             $p9_q1 = Yii::$app->db->createCommand("SELECT * FROM `mondai9_answer` WHERE `id`    = '".$part9['ans1']."'    LIMIT 1 ")->queryOne();
+             $p9_q2 = Yii::$app->db->createCommand("SELECT * FROM `mondai9_answer` WHERE `id`    = '".$part9['ans2']."'    LIMIT 1 ")->queryOne();
+             $p9_q3 = Yii::$app->db->createCommand("SELECT * FROM `mondai9_answer` WHERE `id`    = '".$part9['ans3']."'    LIMIT 1 ")->queryOne();
+             $p9_q4 = Yii::$app->db->createCommand("SELECT * FROM `mondai9_answer` WHERE `id`    = '".$part9['ans4']."'    LIMIT 1 ")->queryOne();
+             $p9_q5 = Yii::$app->db->createCommand("SELECT * FROM `mondai9_answer` WHERE `id`    = '".$part9['ans5']."'    LIMIT 1 ")->queryOne();
              $part10 = Yii::$app->db->createCommand("SELECT * FROM `test` WHERE `level` = '".$level."' AND `part` = 10 ORDER BY RAND() LIMIT 2 ")->queryAll();
-             $mondai_list = Mondai_list::findBySql('SELECT * FROM mondailist ORDER BY RAND() LIMIT 2')->all();
+             $mondai_list = Dockkai_long::findBySql('SELECT * FROM dockkai_long ORDER BY RAND() LIMIT 2')->all();
          }
         
           
