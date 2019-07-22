@@ -3,11 +3,11 @@
           <!-- Horizontal Form -->
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Horizontal Form</h3>
+              <h3 class="box-title">Nhập dữ liệu mondai 1 2 3 4 </h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            
+
             <form class="form-horizontal" method="post"  action="/input/input1234">
               <div class="box-body">
                 <div class="form-group">
@@ -71,7 +71,7 @@
                   <label for="inputEmail3" class="col-sm-2 control-label">giải thích đáp án 1</label>
 
                   <div class="col-sm-10">
-                    <input  class="form-control" id="inputEmail3" name="note1" placeholder="mondai">
+                    <input  class="form-control" id="inputEmail3" name="note1" >
                   </div>
                 </div>
                   <div class="form-group">
