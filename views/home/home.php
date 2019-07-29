@@ -53,15 +53,18 @@ use yii\helpers\Html;
       }
 </style>
 <script type="text/javascript" src="<?= Url::to('@web/js/samset.js')?>"></script>
+<script type="text/javascript">
+  
+</script>
 </head>
 <body>
 
 <div class="container">
       
        <div class="row">
-            <div class="col-2 col-md-4"><?php echo Html::img('@web/assets/img/a1.jpg', ['class' => 'img_class']); ?></div>
-            <div class="col-2 col-md-4"><?php echo Html::img('@web/assets/img/a2.jpg', ['class' => 'img_class']); ?></div>
-            <div class="col-2 col-md-4"><?php echo Html::img('@web/assets/img/a3.jpg', ['class' => 'img_class']); ?></div>
+            <div class="col-2 col-md-4"><?php echo Html::img('@web/img/tokyo/tokyo1.jpg', ['class' => 'img_class']); ?></div>
+            <div class="col-2 col-md-4"><?php echo Html::img('@web/img/tokyo/tokyo2.jpg', ['class' => 'img_class']); ?></div>
+            <div class="col-2 col-md-4"><?php echo Html::img('@web/img/tokyo/tokyo3.jpg', ['class' => 'img_class']); ?></div>
       </div>
       
       <div class="content_list">

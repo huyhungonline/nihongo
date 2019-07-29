@@ -92,10 +92,6 @@ use yii\widgets\LinkPager;
                         <i class="fa fa-user bg-aqua"></i>
 
                         <div class="timeline-item">
-                          <span class="time"><i class="fa fa-clock-o"></i>16:00</span>
-
-                          <h3 class="timeline-header"><a href="#"> nguyen hung </a></h3>
-
                           <div class="timeline-body">
 
 
@@ -127,15 +123,25 @@ use yii\widgets\LinkPager;
                         <i class="fa fa-user bg-aqua"></i>
 
                         <div class="timeline-item">
-                          <span class="time"><i class="fa fa-clock-o"></i><?php echo $new['created_at']; ?></span>
-
-                          <h3 class="timeline-header"><a href="#">  <?php echo $new->getpost()[0]->getuser()[0]['username'] ?> </a><?php echo $new['content']; ?></h3>
-
+                          <div class="user-block">
+                            <img class="img-circle img-bordered-sm" src="<?= Url::to('@web/img/max.png')?>" alt="user image">
+                                <span class="username">
+                                  <a href="#"> <?php echo $new->getpost()[0]->getuser()[0]['username'] ?></a>
+                                  <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+                                </span>
+                            <span class="description"><?php echo $new['created_at']; ?></span>
+                          </div>
+                      
                           <div class="timeline-body">
                            
                             <?php echo $new->getpost()[0]['content']; ?>
                           </div>
                           <div class="timeline-footer">
+                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like 
+                            <span class="pull-right-container">
+                             <small class="label pull-right bg-green">16</small>
+                            </span></a>
+                  
                             <a class="btn btn-primary btn-xs"  href="<?php echo Url::toRoute(['post/comment', 'id' => $new['post_id']]); ?>" >Read more</a>
                             <a class="btn btn-warning btn-flat btn-xs" href="<?php echo Url::toRoute(['post/comment', 'id' => $new['post_id']]); ?>">View comment</a>
                             <?php  if((\Yii::$app->user->identity->id == $new->getpost()[0]['user_id']) || (\Yii::$app->user->identity->id == 1)) { ?>

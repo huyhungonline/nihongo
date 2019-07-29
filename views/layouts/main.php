@@ -228,7 +228,9 @@ $session = Yii::$app->session;
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+        <?php if(!Yii::$app->user->isGuest) { ?>
+          <img src="<?= Url::to('@web/img/max.png')?>" class="img-circle" alt="User Image">
+         <?php } ?>
         </div>
         <div class="pull-left info">
          
@@ -266,13 +268,21 @@ $session = Yii::$app->session;
 
         <li>
           <a href="<?php echo Url::toRoute(['test/index', 'level' => 3]); ?>">
-            <i class="fa fa-files-o"></i>
+            <i class="fa fa-pencil-square-o"></i>
             <span>Luyện đề JLPT</span>
             <span class="pull-right-container">
               <span class="label label-primary pull-right">4</span>
             </span>
           </a>
          
+        </li>
+        <li>
+          <a href="<?php echo Url::toRoute(['/sendmoney/index']); ?>">
+            <i class="fa fa-usd"></i> <span>Kiểm tra tỷ giá ngoại tệ</span>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-green">new</small>
+            </span>
+          </a>
         </li>
         <li>
           <a href="<?php echo Url::toRoute(['/']); ?>">

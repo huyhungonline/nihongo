@@ -98,11 +98,12 @@ class RegisterController extends Controller
          Yii::$app->mailer->compose()
           ->setFrom('nguyenhuyhung.business@gmail.com')
           ->setTo($email)
-          ->setSubject('Уведемление с сайта <yourDomain>') // тема письма
-          ->setTextBody('Текстовая версия письма (без HTML)')
+          ->setSubject('Xác nhận đăng kí tài khoản MyColor') // тема письма
+          ->setTextBody('')
           ->setHtmlBody("
-            <h2 style='color:blue;'>Bạn đã đăng kí tài khoản tại trang newNet.com</h2><br>
-            <p>Vui lòng click vào link dưới đây để hoàn tất đăng kí tài khoản</p>
+            <h2 style='color:blue;'>Bạn đã đăng kí tài khoản tại trang newNet.com</h2>
+            <h3 style='color:blue;'>Chúc bạn thành công trên con đường chinh phục tiếng Nhật, chúng tôi sẽ luôn đồng hành cùng bạn!</h3>
+            <p style='color:red;'>Vui lòng click vào link dưới đây để hoàn tất đăng kí tài khoản</p>
             <a href=".$str.">Click tại đây để xác nhận</a>")
           ->send();
           return 1;

@@ -78,46 +78,40 @@ use yii\helpers\Html;
 
        function myFunction() {
 
-                     var x = document.getElementById("input_money").value;
-                    
-                    
-                     var someValue = $("#rate").text();
-                     
-                     // var result = parseInt(x)*parseInt(someValue, 10);
-                     var result = x;
-                     var lenght = result.toString().length;
-                     var first = '';
-                     var last  = '';
-                     var text   = '';
-                     if(lenght>3){
-                     
-                        first = result.substring(0, lenght%3);
-                      
-                        last  = result.substring(lenght%3+1, lenght);
-                       
-                        // for (var i = last.length; i >= 3; i--) {
-                           
-                        //       if(i%3==0){
-                               
-                        //          text = last.substring(i-3,i)+',' + text;
-                        //       }
-                             
-                        
-                        // }
-                     }
-                     
-                     if (text == '') {
-                       text = result;
-                     }
-                     $("#ketqua").text(first+text+"VND");
+                     var money = document.getElementById("input_money").value;
+                     var rate = document.getElementById("ratemoney").value;
+                     var total = money*rate;
+                     var result = formatMoney(total, decimalCount = 2, decimal = ".", thousands = ",");
+
+                  
+                     $("#ketqua").text(result+"VND");
 
 
                      }
+
+      function formatMoney(amount, decimalCount = 2, decimal = ".", thousands = ",") {
+          try {
+            decimalCount = Math.abs(decimalCount);
+            decimalCount = isNaN(decimalCount) ? 2 : decimalCount;
+
+            const negativeSign = amount < 0 ? "-" : "";
+
+            let i = parseInt(amount = Math.abs(Number(amount) || 0).toFixed(decimalCount)).toString();
+            let j = (i.length > 3) ? i.length % 3 : 0;
+
+            return negativeSign + (j ? i.substr(0, j) + thousands : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousands) + (decimalCount ? decimal + Math.abs(amount - i).toFixed(decimalCount).slice(2) : "");
+          } catch (e) {
+            console.log(e)
+          }
+        };
+        document.getElementById("b").addEventListener("click", event => {
+          document.getElementById("x").innerText = "Result was: " + formatMoney(document.getElementById("d").value);
+        });
 
 </script>
 <body style="background-color: #8FBC8F;">
   <div class="content">
-            <h1 style="margin-left: 30%;padding-top: 2%"> Sàn Giao Dịch Nhật - Việt </h1>
+            <h1 style="margin-left: 30%;padding-top: 2%"> Chuyển đổi tiền Nhật-Việt</h1>
 
                 <div class="row">
                   <h4>Tỷ giá hôm nay: 1円 : <?php echo $exchange_rate; ?> VND</h4>
@@ -128,65 +122,9 @@ use yii\helpers\Html;
                         <span id="rate" ><?php echo $exchange_rate; ?></span> = <span id="ketqua">0VND</span>
                       </h4>
                   </div>
-
+                  <input type="hidden" id="ratemoney" value="<?php echo $exchange_rate; ?>">
                  
                 </div>
-                <div class="row">
-                	<h3>Hướng dẫn</h3>
-                	<p class="text-sm-left">+Click vào đây để gửi tiền về Việt Nam.<a href="<?php echo Url::toRoute(['/upload']); ?>"><input class="btn-primary" type="button" value ="Gửi tiền về Việt Nam"></a></p>
-                	<p class="text-sm-left">+Click vào đây đề bán tiền Man.<input class="btn-primary" type="button" value ="Bán tiền Yên"></p>
-                	<p class="text-sm-left">+Sau khi chuyển khoản bạn cần upload hóa đơn lên hệ thống.</p>
-                	<p class="text-sm-left">+Gửi tiền vào ngày 26 hàng tháng sẽ giúp bạn tiết kiệm 70% chi phí gửi.</p>
-                	
-                </div>
-                <div class="row">
-                	<table class="table table-striped w-auto">
-
-              <!--Table head-->
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Số tiền chuyển </th>
-                  <th>Phí dịch vụ</th>
-                  <th>Lưu ý</th>
-                  <th>Thời gian nhận được tiền</th>
-                 
-                </tr>
-              </thead>
-              <!--Table head-->
-
-              <!--Table body-->
-              <tbody>
-              	 <tr>
-                  <th scope="row">1</th>
-                  <td>1,000 - 30,000</td>
-                  <td>¥400</td>
-                  <td></td>
-                  <td>1 ngày</td>
-                
-                </tr>
-                <tr class="table-info">
-                  <th scope="row">2</th>
-                  <td>30,001 - 250,000</td>
-                  <td>¥1,000</td>
-                  <td>Nếu gửi ngày 29 giảm 50% phí gửi</td>
-                  <td></td>
-                 
-                </tr>
-               <tr>
-                  <th scope="row">3</th>
-                  <td>250,001 - 1,000,000</td>
-                  <td>¥1,750</td>
-                  <td>nếu gửi ngày 29 giảm 70% giá gửi</td>
-                  <td></td>
-                 
-                </tr>
                
-              </tbody>
-              <!--Table body-->
-
-
-                  </table>
-              </div>
   </div>
 </body>
