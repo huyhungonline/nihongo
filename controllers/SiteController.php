@@ -77,9 +77,10 @@ class SiteController extends Controller
         }
       
         $model = new LoginForm();
+
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
 
-                 $user    =  User::findByUsername(Yii::$app->request->post("LoginForm")['username']);
+                 $user    =  User::findByEmail(Yii::$app->request->post("LoginForm")['email']);
                  
                  $session = Yii::$app->session;
                  $session->set('username', $user->username);

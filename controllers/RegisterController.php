@@ -83,7 +83,9 @@ class RegisterController extends Controller
            $user = User::findBySql("SELECT * FROM users where uniqid = '".$uniqid."'")->one();
        
            if($user){
-
+              
+             $user->active = 1;
+             $user->save();
              return $this->redirect(['/login']);
 
            }else{

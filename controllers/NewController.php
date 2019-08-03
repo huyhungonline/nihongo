@@ -21,9 +21,9 @@ class NewController extends Controller
                 ]);
 
           $countQuery   = clone $news;
-          $pages        = new Pagination(['totalCount' => $countQuery->count(),'pageSize' => '1']);
+          $pages        = new Pagination(['totalCount' => $countQuery->count(),'pageSize' => 1]);
           $list_news     = $news->offset($pages->offset)
-              ->limit(20)
+              ->limit(10)
               ->all();
          // $i = 0;
          // foreach ($news as $new) {
