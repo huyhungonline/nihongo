@@ -35,7 +35,7 @@ $session = Yii::$app->session;
                 
               </ul>
 
-              <a href="<?php echo Url::toRoute(['/user/avatar']); ?>" class="btn btn-primary btn-block"><b>Thay đổi thông tin tài khoản</b></a>
+              <a href="<?php echo Url::toRoute(['/user/avatar', 'id' => $user->id]); ?>" class="btn btn-primary btn-block"><b>Thay đổi thông tin tài khoản</b></a>
             </div>
             <!-- /.box-body -->
           </div>

@@ -28,7 +28,7 @@ use yii\helpers\Url;
                 ],
             ]); ?>
 
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true,'name' => 'username']) ?>
+                <?= $form->field($model, 'username')->textInput(['autofocus' => true,'name' => 'username', 'value' => $user->username]) ?>
 
                 <?= $form->field($model, 'password')->passwordInput(['name' => 'password']) ?>
 

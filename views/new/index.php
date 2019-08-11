@@ -84,7 +84,7 @@ use yii\widgets\LinkPager;
                           <div class="timeline-body">
 
 
-                             <form role="form" class="post-form" action="post/create">
+                             <form role="form" class="post-form" method="post" action="post/create">
                                 
                                 <!-- textarea -->
                                 <div class="form-group">

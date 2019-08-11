@@ -176,44 +176,48 @@ $session = Yii::$app->session;
             <span class="hidden-xs"><?= \Yii::$app->user->identity->username ?></span>
             <?php } ?>
             </a>
-            
-            <ul class="dropdown-menu">
-              <!-- User image -->
-              <li class="user-header">
-                 <?php $myavatar = "@web/uploads/".Yii::$app->user->identity->avatar;?>
-                <img src="<?= Url::to($myavatar)?>" class="img-circle" alt="User Image">
-
-                <p>
-
-                  <?= \Yii::$app->user->identity->username ?>
+            <?php if(!Yii::$app->user->isGuest) { ?>
+              <ul class="dropdown-menu">
+                
+                <!-- User image -->
+                <li class="user-header">
                  
-                </p>
-              </li>
-              <!-- Menu Body -->
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
+                  <?php $myavatar = "@web/uploads/".Yii::$app->user->identity->avatar;?>
+                  <img src="<?= Url::to($myavatar)?>" class="img-circle" alt="User Image">
+                 
+                  <p>
+
+                    <?= \Yii::$app->user->identity->username ?>
+                   
+                  </p>
+                </li>
+               
+                <!-- Menu Body -->
+                <li class="user-body">
+                  <div class="row">
+                    <div class="col-xs-4 text-center">
+                      <a href="#">Followers</a>
+                    </div>
+                    <div class="col-xs-4 text-center">
+                      <a href="#">Sales</a>
+                    </div>
+                    <div class="col-xs-4 text-center">
+                      <a href="#">Friends</a>
+                    </div>
                   </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
+                  <!-- /.row -->
+                </li>
+                <!-- Menu Footer-->
+                <li class="user-footer">
+                  <div class="pull-left">
+                    <a href="<?php echo Url::toRoute(['user/profile', 'user_id' => Yii::$app->user->identity->id]); ?>" class="btn btn-default btn-flat">Profile</a>
                   </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
+                  <div class="pull-right">
+                    <a href="<?php echo Url::toRoute(['/logout']); ?>" class="btn btn-default btn-flat">Sign out</a>
                   </div>
-                </div>
-                <!-- /.row -->
-              </li>
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="<?php echo Url::toRoute(['user/profile', 'user_id' => Yii::$app->user->identity->id]); ?>" class="btn btn-default btn-flat">Profile</a>
-                </div>
-                <div class="pull-right">
-                  <a href="<?php echo Url::toRoute(['/logout']); ?>" class="btn btn-default btn-flat">Sign out</a>
-                </div>
-              </li>
-            </ul>
+                </li>
+              </ul>
+          <?php } ?>
           </li>
           <!-- Control Sidebar Toggle Button -->
           <li>

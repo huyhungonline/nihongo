@@ -60,7 +60,7 @@ use yii\helpers\Html;
 <body>
 
 <div class="container">
-      
+      <br>
        <div class="row">
             <div class="col-2 col-md-4"><?php echo Html::img('@web/img/tokyo/tokyo1.jpg', ['class' => 'img_class']); ?></div>
             <div class="col-2 col-md-4"><?php echo Html::img('@web/img/tokyo/tokyo2.jpg', ['class' => 'img_class']); ?></div>

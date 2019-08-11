@@ -13,6 +13,7 @@ class AvatarForm extends Model
     public $email;
     public $password;
     public $imageFile;
+  
 
     public function rules()
     {

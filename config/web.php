@@ -113,7 +113,7 @@ $config = [
                  '/user/index' =>  'user/index',
                  '/user/comment' =>  'user/comment',
                  '/user/avatar' =>  'user/avatar',
-                 '/user/profile' =>  'user/profile',
+                 '/user/profile/<id:\d+>' =>  'user/profile',
                  //mail
                  '/sendmail' =>  'register/sendmail',
                  // input

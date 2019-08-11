@@ -20,7 +20,10 @@ class UserController extends Controller
       }
 
       public function actionAvatar(){
-          
+            
+            $request  = Yii::$app->request;
+            $user_id  = $request->get('id');
+            $user     = User::findIdentity($user_id);
             $model = new AvatarForm();
             $email = Yii::$app->user->identity->email;
             if (Yii::$app->request->isPost) {
@@ -46,7 +49,7 @@ class UserController extends Controller
             }
          
        
-      	 return $this->render('avatar', ['model' => $model,'email' => $email]);
+      	 return $this->render('avatar', ['model' => $model,'email' => $email,'user' => $user]);
       }
 
       public function actionProfile(){
