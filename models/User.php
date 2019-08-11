@@ -2,6 +2,7 @@
 
 namespace app\models;
 use yii\db\ActiveRecord;
+use app\models\Nihongo_score;
 use Yii;
 class User extends ActiveRecord implements \yii\web\IdentityInterface
 {
@@ -12,7 +13,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     public $authKey;
     public $accessToken;
     public $uniqid;
-   
+    public $avatar;
 
    public static function tableName()
     {
@@ -43,6 +44,8 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
         $user = new User();
         $user->id       = $result['id'];
         $user->username = $result['username'];
+        $user->email = $result['email'];
+        $user->avatar = $result['avatar'];
         $user->password = $result['password'];
         $user->accessToken =  $result['accessToken'];
         $user->role =  $result['role'];
@@ -59,6 +62,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
 
         $user = new User();
         $user->username = $result['username'];
+        $user->email = $result['email'];
         $user->password = $result['password'];
         $user->accessToken =  $result['accessToken'];
         return $user;
@@ -140,6 +144,13 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
 
         return false;
         
+    }
+
+    public function nihongo_score()
+    {
+           $score = Nihongo_score::findBySql('SELECT * FROM nihongo_score where user_id ='.$this->user_id)->one();
+
+           return $score;
     }
     /**
      * {@inheritdoc}

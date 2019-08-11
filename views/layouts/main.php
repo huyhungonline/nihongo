@@ -180,11 +180,13 @@ $session = Yii::$app->session;
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                 <?php $myavatar = "@web/uploads/".Yii::$app->user->identity->avatar;?>
+                <img src="<?= Url::to($myavatar)?>" class="img-circle" alt="User Image">
 
                 <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2012</small>
+
+                  <?= \Yii::$app->user->identity->username ?>
+                 
                 </p>
               </li>
               <!-- Menu Body -->
@@ -205,7 +207,7 @@ $session = Yii::$app->session;
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="<?php echo Url::toRoute(['user/profile', 'user_id' => Yii::$app->user->identity->id]); ?>" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                   <a href="<?php echo Url::toRoute(['/logout']); ?>" class="btn btn-default btn-flat">Sign out</a>
@@ -229,7 +231,8 @@ $session = Yii::$app->session;
       <div class="user-panel">
         <div class="pull-left image">
         <?php if(!Yii::$app->user->isGuest) { ?>
-          <img src="<?= Url::to('@web/img/max.png')?>" class="img-circle" alt="User Image">
+        <?php $myavatar = "@web/uploads/".Yii::$app->user->identity->avatar;?>
+          <img src="<?= Url::to($myavatar)?>" class="img-circle" alt="User Image">
          <?php } ?>
         </div>
         <div class="pull-left info">
@@ -298,10 +301,7 @@ $session = Yii::$app->session;
   </aside>
 
   <div class="content-wrapper">
-    
-     <br>
 
-      
         <?= $content ?>
 
  

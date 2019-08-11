@@ -52,5 +52,12 @@ class NewC extends ActiveRecord
            return $comment;
 
    }
+
+   public function getavatar(){
+
+          $user = User::findBySql('SELECT * FROM users where id ='.$this->user_id)->asArray()->one();
+          // var_dump($user["avatar"]);die;
+           return $user["avatar"];
+   }
    
 }

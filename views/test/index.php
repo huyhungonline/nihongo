@@ -147,6 +147,20 @@ use yii\helpers\Html;
 
        $("#myBtn").click(function(){
            
+                var s = 2*ans_true;
+                $.ajax({
+                     url: '<?php echo Yii::$app->request->baseUrl. '/test/savescore' ?>',
+                     type: 'post',
+                     data: {
+                               score: s, 
+                               type : 1,
+                              _csrf : '<?=Yii::$app->request->getCsrfToken()?>'
+                           },
+                     success: function (data) {
+                        // alert(data.score);
+                     }
+                });
+
             $("#result_true").text(ans_true);
             $("#result_false").text(answer_false);
             $("#result").text(2*ans_true);
@@ -178,7 +192,7 @@ use yii\helpers\Html;
         margin: auto;
         padding: 20px;
         border: 1px solid #888;
-        width: 50%;
+        
         color: green;
       }
 
@@ -203,14 +217,11 @@ use yii\helpers\Html;
         height: 80px;
       }
 
-      #myModal {
-
-      }
 
       .text_result {
 
-         margin-left: 35%;
-         margin-bottom: 4%;
+         margin-left: 45%;
+        /* margin-bottom: 4%;*/
 
 
       }
@@ -302,23 +313,14 @@ var state = 0;
 
  <script type="text/javascript">
  
-     $( document ).ready(function() {
-
-            $( ".mondai1" ).each(function() {
-
-                    var str = $( this ).text();
-                    var res = str.replace('(', "<span class='koto_mondai1'>");
-                    var res = res.replace(')', "</span>");
-                    
-                    $( this ).text(res);
-            });
-     });
+    
  </script>
 </head>
 <body >
  
 
 <div class="container">
+    <br>
     <div class="row">
     
       <div class="col bg-danger">
@@ -348,6 +350,8 @@ var state = 0;
             </a>
            
           <?php } ?>
+    </div>
+    <div class="row">
        <div class="col-11 bg-infor " style="background-color:#B0C4DE;color: black">
               <h1 style="margin-left: 35%;margin-top: 1%">文字・語彙</h1>
             <h4 class="title">問題1___のことばの読み方として最もよいものを、1・2・3・4から一つえらびなさい。</h4>
@@ -426,6 +430,7 @@ var state = 0;
                </div>
             </div>
             <?php $i++; } ?>
+            <?php if($level <= 2) { ?>
              <h4 class="title">問題5 ＿＿の言葉に意味が最も近いものを、1・2・3・4から一つ選びなさい。</h4>
               <?php  $i = 1; foreach($part5 as $p5) { ?>
   
@@ -445,8 +450,13 @@ var state = 0;
                </div>
             </div>
             <?php $i++; } ?>
-
-             <h4 class="title">問題6 次の言葉の使い方として最もよいものを、1・2・3・4から一つ選びなさい。</h4>
+            <?php } ?>
+            <?php if($level >= 3) { ?>
+                 <h4 class="title">問題5 次の言葉の使い方として最もよいものを、1・2・3・4から一つ選びなさい。</h4>
+            <?php }else{ ?>
+                 <h4 class="title">問題6 次の言葉の使い方として最もよいものを、1・2・3・4から一つ選びなさい。</h4>
+            <?php } ?>
+            
               <?php  $i = 1; foreach($part6 as $p6) { ?>
   
             <div class="question" >
@@ -461,7 +471,7 @@ var state = 0;
                </div>
             </div>
             <?php $i++; } ?>
-              <a href="<?php echo Url::toRoute(['test/home', 'level' => 3]); ?>" style="margin-left: 35%;margin-bottom: 1%" class="btn btn-danger btn-lg">
+              <a href="<?php echo Url::toRoute(['test/home', 'level' => $level]); ?>" style="margin-left: 35%;margin-bottom: 1%" class="btn btn-danger btn-lg">
                      <span class="glyphicon glyphicon-hand-right"></span> Click để làm tiếp phần đọc hiểu
               </a> 
             </div>
@@ -469,17 +479,17 @@ var state = 0;
 
        </div>
                 <button id="myBtn" class="btn btn-primary"><h1>結果</h1></button>
+        <div class="row">
+                <div id="myModal" class="col col-sm-12 offset-sm-6 modal">
 
-                <div id="myModal" class="modal">
-
-                  <div class="modal-content bg-success">
+                  <div class=" modal-content bg-success">
                     <span class="close">&times;</span>
                     
                       <h1 class="text_result">テスト結果</h1>
                    
                     <div class="header_result">
                         <h2 class="text_result" style="display: inline;"><span class="glyphicon glyphicon-thumbs-up"></span>    正解:</h2><h2 style="display: inline;margin-left: 5%;" id="result_true"></h2><br>
-                        <h2 class="text_result" style="display: inline;"><span class="glyphicon glyphicon-thumbs-down"></span>  不正解:</h2><h2 style="display: inline;margin-left: 1.5%;color: red;" id="result_false"></h2><br>
+                        <h2 class="text_result" style="display: inline;"><span class="glyphicon glyphicon-thumbs-down"></span>  不正解:</h2><h2 style="display: inline;margin-left: 3.3%;color: red;" id="result_false"></h2><br>
                         <h2 class="text_result" style="display: inline;"> <span class="glyphicon glyphicon-hand-right"></span>  点数:</h2><h2 style="display: inline;margin-left: 5%" id="result"></h2>
                      </div>
                       <?php if(Yii::$app->user->isGuest) { ?>
@@ -492,6 +502,7 @@ var state = 0;
                   </div>
 
                 </div>
+        </div>
 <script>
       // Get the modal
       var modal = document.getElementById("myModal");

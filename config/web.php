@@ -88,28 +88,37 @@ $config = [
                  '/home'       =>  'home/home',
                  '/sentence'       =>  'sentence/index',
                  '/game'       =>  'game/index',
+
                  '/test/index'   =>   'test/index',
                  '/test/home'   =>   'test/home',
+                 '/test/savescore'   =>   'test/savescore',
+
                  '/site'   =>   'site/index',
                  'test/<level:\d+>/<jlpt>'=>'test/index',
                  '/new' =>  'new/index',
+
                  '/post/comment/<id:\d+>' =>  'post/comment',
                  '/post/create' =>  'post/create',
                  '/post/delete/<id:\d+>' =>  'post/delete',
                  '/post/createcomment' =>  'post/createcomment',
                  '/post/deletecomment/<id:\d+>' =>  'post/deletecomment',
                  '/post/test' =>  'post/test',
+
+
                  '/upload' =>  'file/upload',
                  '/sendmoney/index' =>  'file/index',
                  '/order/status' =>  'order/status',
                  '/status_money' =>  'file/status_money',
+                 //
                  '/user/index' =>  'user/index',
                  '/user/comment' =>  'user/comment',
-
+                 '/user/avatar' =>  'user/avatar',
+                 '/user/profile' =>  'user/profile',
                  //mail
                  '/sendmail' =>  'register/sendmail',
                  // input
                  '/input/input1234' =>  '/input/input1234',
+                 '/input/input10' =>  '/input/input10',
                  '/input/delete1234/<id:\d+>' =>  '/input/delete1234',
             ],
         ],

@@ -144,7 +144,21 @@ use yii\helpers\Url;
        });
 
        $("#myBtn").click(function(){
-           
+             
+                var s = 2*ans_true;
+                $.ajax({
+                     url: '<?php echo Yii::$app->request->baseUrl. '/test/savescore' ?>',
+                     type: 'post',
+                     data: {
+                               score: s, 
+                               type : 2,
+                              _csrf : '<?=Yii::$app->request->getCsrfToken()?>'
+                           },
+                     success: function (data) {
+                        alert(data.score);
+                     }
+                });
+
             $("#result_true").text(ans_true);
             $("#result_false").text(answer_false);
             $("#result").text(2*ans_true);
@@ -306,6 +320,7 @@ var state = 0;
  
 
 <div class="container">
+  <br>
     <div class="row">
       <div class="col bg-danger">
             <div class="btn-group">

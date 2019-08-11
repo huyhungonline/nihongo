@@ -51,7 +51,7 @@ class InputController extends Controller
           
         
       }
-      
+       
         public function actionDelete1234(){
         
             $transaction = Yii::$app->db->beginTransaction();
@@ -74,6 +74,50 @@ class InputController extends Controller
                       printf($e->message);
              }
 
+      }
+
+       public function actionInput10()
+      {        
+
+               $request = Yii::$app->request;
+               if (Yii::$app->request->post()) { 
+                 
+                  $question  = $request->post('question');
+                  $question_sub  = $request->post('question_sub');
+                  $answer1   = $request->post('answer1');
+                  $answer2   = $request->post('answer2');
+                  $answer3   = $request->post('answer3');
+                  $answer4   = $request->post('answer4');
+                  $answer_true  = $request->post('answer_true');
+                  $part      = $request->post('part');
+                  $level     = $request->post('level');
+                  $note1     = $request->post('note1');
+                  $note2     = $request->post('note2');
+                  $note3     = $request->post('note3');
+                  $note4     = $request->post('note4');
+                  $test      = new Test();
+                  $test->question = $question;
+                  $test->question_sub = $question_sub;
+                  $test->answer1 = $answer1;
+                  $test->answer2 = $answer2;
+                  $test->answer3 = $answer3;
+                  $test->answer4 = $answer4;
+                  $test->answer_true = $answer_true;
+                  $test->level = $level;
+                  $test->part  = $part;
+                  $test->note1 = $note1;
+                  $test->note2 = $note2;
+                  $test->note3 = $note3;
+                  $test->note4 = $note4;
+                  $test->save();
+                  return $this->render('checksave10',['test' => $test]);
+
+               }else{
+
+                   return $this->render('input10');
+               }
+          
+        
       }
       public function actionHome(){
         

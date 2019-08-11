@@ -60,30 +60,19 @@ use yii\widgets\LinkPager;
             });
     });
     </script>
-    <section class="content-header">
-      <h1>
-        <p id="date1"></p>
-        <small>chào ngày mới</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">UI</a></li>
-        <li class="active">Timeline</li>
-      </ol>
-    </section>
 
     <!-- Main content -->
     <section class="content">
 
       <!-- row -->
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-8">
           <!-- The time line -->
           <ul class="timeline">
             <!-- timeline time label -->
             <li class="time-label">
                   <span class="bg-red">
-                    Bạn đang nghĩ gì?
+                    Đặt câu hỏi?
                   </span>
             </li>
             <!-- /.timeline-label -->
@@ -124,7 +113,9 @@ use yii\widgets\LinkPager;
 
                         <div class="timeline-item">
                           <div class="user-block">
-                            <img class="img-circle img-bordered-sm" src="<?= Url::to('@web/img/max.png')?>" alt="user image">
+
+                            <?php $myavatar = "@web/uploads/".$new->getavatar();?>
+                            <img class="img-circle img-bordered-sm" src="<?= Url::to($myavatar)?>" alt="user image">
                                 <span class="username">
                                   <a href="#"> <?php echo $new->getpost()[0]->getuser()[0]['username'] ?></a>
                                   <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
@@ -155,8 +146,8 @@ use yii\widgets\LinkPager;
                                 
                                 <!-- textarea -->
                                 <div class="form-group">
-                                  <label>Bình luận</label>
-                                  <input  class="form-control" rows="3" name="content" placeholder="Enter ..."></input>
+                        
+                                  <input  class="form-control" rows="3" name="content" placeholder="Bình luận"></input>
                                 </div>
                                  <input type="hidden" name="<?= Yii::$app->request->csrfParam; ?>" value="<?= Yii::$app->request->csrfToken; ?>" />
                                  <input type="hidden" name="post_id" value="<?php echo $new['post_id']; ?>" />
